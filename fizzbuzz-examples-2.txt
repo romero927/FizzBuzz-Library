@@ -1,0 +1,89 @@
+# Ruby
+def fizzbuzz(n)
+  (1..n).each do |i|
+    if i % 3 == 0 && i % 5 == 0
+      puts "FizzBuzz"
+    elsif i % 3 == 0
+      puts "Fizz"
+    elsif i % 5 == 0
+      puts "Buzz"
+    else
+      puts i
+    end
+  end
+end
+
+fizzbuzz(100)
+
+---
+
+// C#
+using System;
+
+class Program
+{
+    static void FizzBuzz(int n)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            if (i % 3 == 0 && i % 5 == 0)
+                Console.WriteLine("FizzBuzz");
+            else if (i % 3 == 0)
+                Console.WriteLine("Fizz");
+            else if (i % 5 == 0)
+                Console.WriteLine("Buzz");
+            else
+                Console.WriteLine(i);
+        }
+    }
+
+    static void Main()
+    {
+        FizzBuzz(100);
+    }
+}
+
+---
+
+// Go
+package main
+
+import "fmt"
+
+func fizzbuzz(n int) {
+    for i := 1; i <= n; i++ {
+        if i%3 == 0 && i%5 == 0 {
+            fmt.Println("FizzBuzz")
+        } else if i%3 == 0 {
+            fmt.Println("Fizz")
+        } else if i%5 == 0 {
+            fmt.Println("Buzz")
+        } else {
+            fmt.Println(i)
+        }
+    }
+}
+
+func main() {
+    fizzbuzz(100)
+}
+
+---
+
+// Swift
+func fizzbuzz(_ n: Int) {
+    for i in 1...n {
+        switch (i % 3 == 0, i % 5 == 0) {
+        case (true, true):
+            print("FizzBuzz")
+        case (true, false):
+            print("Fizz")
+        case (false, true):
+            print("Buzz")
+        default:
+            print(i)
+        }
+    }
+}
+
+fizzbuzz(100)

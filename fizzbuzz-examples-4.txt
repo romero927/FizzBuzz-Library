@@ -1,0 +1,71 @@
+// Scala
+object FizzBuzz {
+  def fizzbuzz(n: Int): Unit = {
+    for (i <- 1 to n) {
+      println((i % 3, i % 5) match {
+        case (0, 0) => "FizzBuzz"
+        case (0, _) => "Fizz"
+        case (_, 0) => "Buzz"
+        case _ => i
+      })
+    }
+  }
+
+  def main(args: Array[String]): Unit = {
+    fizzbuzz(100)
+  }
+}
+
+---
+
+# Perl
+sub fizzbuzz {
+    my $n = shift;
+    for my $i (1..$n) {
+        if ($i % 3 == 0 && $i % 5 == 0) {
+            print "FizzBuzz\n";
+        } elsif ($i % 3 == 0) {
+            print "Fizz\n";
+        } elsif ($i % 5 == 0) {
+            print "Buzz\n";
+        } else {
+            print "$i\n";
+        }
+    }
+}
+
+fizzbuzz(100);
+
+---
+
+-- Haskell
+fizzbuzz :: Int -> [String]
+fizzbuzz n = [fb i | i <- [1..n]]
+  where
+    fb i
+      | i `mod` 15 == 0 = "FizzBuzz"
+      | i `mod` 3 == 0  = "Fizz"
+      | i `mod` 5 == 0  = "Buzz"
+      | otherwise       = show i
+
+main :: IO ()
+main = mapM_ putStrLn $ fizzbuzz 100
+
+---
+
+-- Lua
+function fizzbuzz(n)
+    for i = 1, n do
+        if i % 3 == 0 and i % 5 == 0 then
+            print("FizzBuzz")
+        elseif i % 3 == 0 then
+            print("Fizz")
+        elseif i % 5 == 0 then
+            print("Buzz")
+        else
+            print(i)
+        end
+    end
+end
+
+fizzbuzz(100)

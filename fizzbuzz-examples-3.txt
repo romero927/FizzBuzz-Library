@@ -1,0 +1,73 @@
+// Kotlin
+fun fizzbuzz(n: Int) {
+    for (i in 1..n) {
+        when {
+            i % 3 == 0 && i % 5 == 0 -> println("FizzBuzz")
+            i % 3 == 0 -> println("Fizz")
+            i % 5 == 0 -> println("Buzz")
+            else -> println(i)
+        }
+    }
+}
+
+fun main() {
+    fizzbuzz(100)
+}
+
+---
+
+// Rust
+fn fizzbuzz(n: u32) {
+    for i in 1..=n {
+        match (i % 3, i % 5) {
+            (0, 0) => println!("FizzBuzz"),
+            (0, _) => println!("Fizz"),
+            (_, 0) => println!("Buzz"),
+            (_, _) => println!("{}", i),
+        }
+    }
+}
+
+fn main() {
+    fizzbuzz(100);
+}
+
+---
+
+// PHP
+<?php
+function fizzbuzz($n) {
+    for ($i = 1; $i <= $n; $i++) {
+        if ($i % 3 == 0 && $i % 5 == 0) {
+            echo "FizzBuzz\n";
+        } elseif ($i % 3 == 0) {
+            echo "Fizz\n";
+        } elseif ($i % 5 == 0) {
+            echo "Buzz\n";
+        } else {
+            echo $i . "\n";
+        }
+    }
+}
+
+fizzbuzz(100);
+?>
+
+---
+
+// TypeScript
+function fizzbuzz(n: number): void {
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("FizzBuzz");
+        } else if (i % 3 === 0) {
+            console.log("Fizz");
+        } else if (i % 5 === 0) {
+            console.log("Buzz");
+        } else {
+            console.log(i);
+        }
+    }
+}
+
+fizzbuzz(100);

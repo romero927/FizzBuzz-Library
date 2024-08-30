@@ -1,0 +1,207 @@
+# R
+fizzbuzz <- function(n) {
+  for (i in 1:n) {
+    if (i %% 3 == 0 && i %% 5 == 0) {
+      print("FizzBuzz")
+    } else if (i %% 3 == 0) {
+      print("Fizz")
+    } else if (i %% 5 == 0) {
+      print("Buzz")
+    } else {
+      print(i)
+    }
+  }
+}
+
+fizzbuzz(100)
+
+---
+
+% Prolog
+fizzbuzz(N) :-
+    between(1, N, I),
+    (   0 is I mod 15 -> write('FizzBuzz'), nl
+    ;   0 is I mod 3 -> write('Fizz'), nl
+    ;   0 is I mod 5 -> write('Buzz'), nl
+    ;   write(I), nl
+    ),
+    fail.
+fizzbuzz(_).
+
+:- fizzbuzz(100).
+
+---
+
+% Erlang
+-module(fizzbuzz).
+-export([fizzbuzz/1]).
+
+fizzbuzz(N) ->
+    [print(I) || I <- lists:seq(1, N)].
+
+print(I) when I rem 3 == 0, I rem 5 == 0 -> io:format("FizzBuzz~n");
+print(I) when I rem 3 == 0 -> io:format("Fizz~n");
+print(I) when I rem 5 == 0 -> io:format("Buzz~n");
+print(I) -> io:format("~p~n", [I]).
+
+% Usage: fizzbuzz:fizzbuzz(100).
+
+---
+
+; Clojure
+(defn fizzbuzz [n]
+  (doseq [i (range 1 (inc n))]
+    (println
+      (cond
+        (zero? (mod i 15)) "FizzBuzz"
+        (zero? (mod i 3)) "Fizz"
+        (zero? (mod i 5)) "Buzz"
+        :else i))))
+
+(fizzbuzz 100)
+
+---
+
+; x86 Assembly (Linux, 32-bit)
+section .data
+    fizz db 'Fizz', 0
+    buzz db 'Buzz', 0
+    nl db 10, 0
+    fmt db '%d', 10, 0
+
+section .text
+    global main
+    extern printf
+
+main:
+    mov ecx, 1
+.loop:
+    mov eax, ecx
+    mov ebx, 3
+    cdq
+    idiv ebx
+    mov esi, edx
+    mov eax, ecx
+    mov ebx, 5
+    cdq
+    idiv ebx
+    mov edi, edx
+    
+    test esi, esi
+    jnz .not_fizz
+    push ecx
+    push fizz
+    call printf
+    add esp, 4
+    jmp .check_buzz
+.not_fizz:
+    test edi, edi
+    jnz .just_number
+.check_buzz:
+    test edi, edi
+    jnz .end_print
+    push ecx
+    push buzz
+    call printf
+    add esp, 4
+    jmp .end_print
+.just_number:
+    push ecx
+    push fmt
+    call printf
+    add esp, 8
+.end_print:
+    push ecx
+    push nl
+    call printf
+    add esp, 8
+    
+    inc ecx
+    cmp ecx, 100
+    jle .loop
+    
+    ret
+
+---
+
+-- SQL (PostgreSQL)
+WITH RECURSIVE fizzbuzz(n) AS (
+    SELECT 1
+    UNION ALL
+    SELECT n + 1 FROM fizzbuzz WHERE n < 100
+)
+SELECT
+    CASE
+        WHEN n % 15 = 0 THEN 'FizzBuzz'
+        WHEN n % 3 = 0 THEN 'Fizz'
+        WHEN n % 5 = 0 THEN 'Buzz'
+        ELSE n::text
+    END AS result
+FROM fizzbuzz
+ORDER BY n;
+
+---
+
+% MATLAB
+function fizzbuzz(n)
+    for i = 1:n
+        if mod(i, 15) == 0
+            disp('FizzBuzz')
+        elseif mod(i, 3) == 0
+            disp('Fizz')
+        elseif mod(i, 5) == 0
+            disp('Buzz')
+        else
+            disp(i)
+        end
+    end
+end
+
+% Usage: fizzbuzz(100)
+
+---
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FIZZBUZZ.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 I PIC 999.
+       PROCEDURE DIVISION.
+       MAIN-PROCEDURE.
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 100
+               IF FUNCTION MOD (I 3) = 0 AND FUNCTION MOD (I 5) = 0
+                   DISPLAY "FizzBuzz"
+               ELSE
+                   IF FUNCTION MOD (I 3) = 0
+                       DISPLAY "Fizz"
+                   ELSE
+                       IF FUNCTION MOD (I 5) = 0
+                           DISPLAY "Buzz"
+                       ELSE
+                           DISPLAY I
+                       END-IF
+                   END-IF
+               END-IF
+           END-PERFORM.
+           STOP RUN.
+
+---
+
+! Fortran
+program fizzbuzz
+  implicit none
+  integer :: i
+  
+  do i = 1, 100
+    if (mod(i, 3) == 0 .and. mod(i, 5) == 0) then
+      print *, "FizzBuzz"
+    else if (mod(i, 3) == 0) then
+      print *, "Fizz"
+    else if (mod(i, 5) == 0) then
+      print *, "Buzz"
+    else
+      print *, i
+    end if
+  end do
+end program fizzbuzz
